@@ -1,0 +1,150 @@
+site_name: "NiceGUI 中文文档"
+site_author: Mingmin Yu
+site_description: >-
+  NiceGUI 中文文档
+site_url: "https://mingminyu.github.io"
+
+copyright: Copyright &copy; 2024, Mingmin Yu
+
+theme:
+  name: material
+  # custom_dir: overrides
+  features:
+    - announce.dismiss
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tooltips
+    - content.tabs.link
+    - content.footnote.tooltips
+    - navigation.instant
+    - navigation.instant.progress
+    # - navigation.instant.prefetch
+    # - navigation.prune
+    - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.indexes
+    # - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 暗黑模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 明亮模式
+  
+  favicon: custom/assets/vue.svg
+  logo: custom/assets/vue.svg
+  language: zh
+
+plugins:
+  - blog:
+      blog_toc: true
+      post_date_format: short
+      post_url_date_format: yyyy/MM/dd
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      post_excerpt_max_authors: 2
+      archive_toc: true
+      categories_toc: true
+      categories_slugify_separator: _
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      pagination_per_page: 10
+      pagination_url_format: "page/{page}"
+      pagination_format: "~2~"
+      pagination_if_single_page: false
+      pagination_keep_content: true
+
+  - tags
+  - search
+  - toggle-sidebar
+  - tags:
+      enabled: true
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/solid/book
+      link: https://cn.vuejs.org/guide/introduction.html
+
+markdown_extensions:
+  - abbr
+  - tables
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - 教程:
+    - index.md
+  
+  - 示例:
+    - examples/index.md
+    - 用户验证: examples/authentication.md
+
