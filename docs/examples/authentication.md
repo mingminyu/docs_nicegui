@@ -40,15 +40,17 @@ app.add_middleware(AuthMiddleware)
 
 ## 2. 登录验证页
 
+
+
 ```python linenums="1"
 userinfo = [
     {"name": "admin", "mail": "", "password": "admin", "role": "admin", "dept": ""}
-]
+]  # (1)!
 
 
 @ui.page('/login')
 def login() -> Optional[RedirectResponse]:
-    def _try_login() -> None:  # local function to avoid passing username and password as arguments
+    def _try_login():  # local function to avoid passing username and password as arguments
         if passwords.get(username.value) == password.value:
             app.storage.user.update({'username': username.value, 'authenticated': True})
             ui.navigate.to(app.storage.user.get('referrer_path', '/'))  # go back to where the user wanted to go
@@ -66,5 +68,4 @@ def login() -> Optional[RedirectResponse]:
     return None
 ```
 
-
-
+    1. 这里我们将用户信息以字典的方式直接写死，实际业务中还是需要根据输入账号以及密码信息去数据库中进行查询，返回验证结果信息。
