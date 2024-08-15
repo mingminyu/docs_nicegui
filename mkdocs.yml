@@ -147,4 +147,5 @@ nav:
   - 示例:
     - examples/index.md
     - 用户验证: examples/authentication.md
+    - 表格扩展: examples/tables.md
 

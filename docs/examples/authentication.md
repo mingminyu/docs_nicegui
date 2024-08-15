@@ -41,7 +41,6 @@ app.add_middleware(AuthMiddleware)
 ## 2. 登录验证页
 
 
-
 ```python linenums="1"
 userinfo = [
     {"name": "admin", "mail": "", "password": "admin", "role": "admin", "dept": ""}
