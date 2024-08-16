@@ -90,7 +90,7 @@ table.add_slot('body-cell-status', '''
     ```python linenums="1" hl_lines="5-7" title="同步更改后的 status 字段值到数据库中"
     from nicegui import events
 
-    def sync2db_status(e: events.GenericEventArguments) -> None:
+    def sync_status(e: events.GenericEventArguments) -> None:
         for row in table.rows:
             if row['id'] == e.args['id'] and row['status'] != e.args['status']:
                 # 将此条数据会更新到数据库
@@ -103,8 +103,9 @@ table.add_slot('body-cell-status', '''
             <q-td key="status" :props="props">
                 <q-toggle v-model="props.row.status" 
                     checked-icon="check" unchecked-icon="clear" 
-                    @update:model-value="(e) => $parent.$emit('sync2db_status', props.row)"
+                    @update:model-value="(e) => $parent.$emit('sync_status', props.row)"
                 />
             </q-td>
         ''')
+    table.on('sync_status', sync_status)
     ```
