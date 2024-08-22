@@ -49,8 +49,8 @@ theme:
         icon: material/brightness-4
         name: 明亮模式
   
-  favicon: custom/assets/vue.svg
-  logo: custom/assets/vue.svg
+  favicon: custom/assets/nicegui.png
+  logo: custom/assets/nicegui.png
   language: zh
 
 plugins:
@@ -146,6 +146,12 @@ nav:
   
   - 示例:
     - examples/index.md
-    - 用户验证: examples/authentication.md
-    - 表格扩展: examples/tables.md
+    - 中间件:
+      - 用户验证: examples/authentication.md
+    
+    - 案例扩展:
+      - 表格: examples/tables.md
+
+    - 页面:
+      - 登录: pages/login.md
 
