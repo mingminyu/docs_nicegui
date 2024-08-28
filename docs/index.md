@@ -3,9 +3,6 @@
 
 ```python title="ref.py"
 
-from reactivex.subject import Subject
-
-
 class Ref:
     def __init__(self, **kwargs):
         self._subject = Subject()
@@ -38,6 +35,10 @@ class Ref:
         if old_value != value:
             self._subject.on_next((key, old_value, value))
 
+    def update_from_dict(self, d: dict):
+        for k, v in d.items():
+            self.set_value(k, v)
+
     def get_value(self, key):
         return self._dict.get(key)
 
@@ -51,7 +52,6 @@ class Ref:
 
     def subscribe(self, on_next):
         return self._subject.subscribe(on_next)
-
 ```
 
 
@@ -93,9 +93,12 @@ def index():
     btn_ref = Ref(text="amy", icon="list")
     btn = Button(
         text="abc",
-        on_click=lambda: (btn_ref.set_value("color", "red"), print(btn_ref))
+        on_click=lambda: (btn_ref.update_from_dict({"size": "lg", "color": "red", "icon": "home"}), print(btn_ref))
     ).bind_ref(btn_ref)
+
+    btn2 = ui.button(on_click=lambda: btn_ref.set_value("text", "two"))
 
 
 ui.run()
+
 ```
